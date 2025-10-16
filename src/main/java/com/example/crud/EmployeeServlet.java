@@ -38,9 +38,6 @@ public class EmployeeServlet extends HttpServlet {
                 case "/delete":
                     deleteEmployee(request, response);
                     break;
-                case "/edit":
-                    showEditForm(request, response);
-                    break;
                 case "/update":
                     updateEmployee(request, response);
                     break;
@@ -63,15 +60,6 @@ public class EmployeeServlet extends HttpServlet {
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-    }
-
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Employee existingEmployee = employeeDao.getEmployeeById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        request.setAttribute("employee", existingEmployee);
-        dispatcher.forward(request, response);
-
     }
 
     private void insertEmployee(HttpServletRequest request, HttpServletResponse response) throws IOException {
